@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Fit Foodie';
+  navLinks = ['Dashboard', 'Goals']
+  activeLink = this.navLinks[0]
 }
