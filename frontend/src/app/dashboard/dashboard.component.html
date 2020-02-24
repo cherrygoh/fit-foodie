@@ -1,9 +1,5 @@
-<body>
-    <!-- <mat-form-field>
-        <input matInput [matDatepicker]="picker">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field> -->
-
-    hello
-</body>
+<mat-form-field id="datepicker" color="accent">
+    <input matInput [matDatepicker]="picker" [formControl]="selectedDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker [startAt]="currentDate"></mat-datepicker>
+</mat-form-field>

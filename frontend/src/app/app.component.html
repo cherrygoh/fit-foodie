@@ -1,13 +1,17 @@
-
 <nav mat-tab-nav-bar mat-stretch-tabs>
     <h1>FitFoodie</h1>
     <div class="spacer"></div>
-    <a mat-tab-link *ngFor="let link of navLinks" (click)="activeLink = link" [active] = "activeLink == link">
+    <a mat-tab-link *ngFor = "let link of navLinks" (click) = "clickTab(link)" [active] = "activeLink == link">
         {{link}}
     </a>
-    <div class="spacer"></div>
-    <button mat-icon-button color="primary">
-        <mat-icon>more_vert</mat-icon>
+    <div class = "spacer"></div>
+    <button mat-icon-button color = "primary">
+        <mat-icon>settings</mat-icon>
     </button>
-</nav>
-    
+</nav> 
+
+<div class="content">
+    <app-dashboard *ngIf="activeLink == 'Dashboard'"></app-dashboard>
+</div>
+
+

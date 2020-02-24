@@ -28,9 +28,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/theme.sass",              
-              "src/styles.sass"
+              "src/styles/theme.sass",
+              "src/styles/styles.sass"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "scripts": []
           },
           "configurations": {

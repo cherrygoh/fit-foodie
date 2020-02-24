@@ -6,7 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'Fit Foodie';
-  navLinks = ['Dashboard', 'Goals']
-  activeLink = this.navLinks[0]
+  navLinks: String[] = ['Dashboard', 'Goals'];
+  activeLink: String = this.navLinks[0];
+
+  ngOnInit() {
+  }
+
+  clickTab(link: any) : void {
+    this.activeLink = link;
+  }
 }
