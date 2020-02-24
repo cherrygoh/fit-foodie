@@ -45,4 +45,16 @@ export class DashboardComponent implements OnInit {
     this.selectedDate.setValue(this.currentDate);
   }
 
+  nextDate() {
+    let nextDate: Date = new Date();
+    nextDate.setDate(this.selectedDate.value.getDate() + 1);
+    this.selectedDate.setValue(nextDate);
+  }
+
+  previousDate() {
+    let previousDate: Date = new Date();
+    previousDate.setDate(this.selectedDate.value.getDate() + 1);
+    this.selectedDate.setValue(previousDate);
+  }
+
 }
