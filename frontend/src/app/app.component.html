@@ -1,4 +1,4 @@
-<nav mat-tab-nav-bar mat-stretch-tabs>
+<!-- <nav mat-tab-nav-bar mat-stretch-tabs color="primary">
     <h1>FitFoodie</h1>
     <div class="spacer"></div>
     <a mat-tab-link *ngFor = "let link of navLinks" (click) = "clickTab(link)" [active] = "activeLink == link">
@@ -8,7 +8,58 @@
     <button mat-icon-button color = "primary">
         <mat-icon>settings</mat-icon>
     </button>
-</nav> 
+</nav>  -->
+
+<!-- <mat-grid-list id="nav-bar" cols="16" rowHeight="48">
+    <mat-grid-tile id="logo" colspan="3" style="align-items: start ! important"><h1>FitFoodie</h1></mat-grid-tile>
+    <mat-grid-tile colspan="1"></mat-grid-tile>
+    <mat-grid-tile colspan="8">
+        <nav mat-tab-nav-bar mat-stretch-tabs color="primary">
+            <a mat-tab-link *ngFor = "let link of navLinks" (click) = "clickTab(link)" [active] = "activeLink == link">
+        {{link}}
+    </a></nav> 
+</mat-grid-tile>
+    <mat-grid-tile colspan="3"></mat-grid-tile>
+    <mat-grid-tile id="nav-options">
+        <button mat-icon-button color = "primary">
+            <mat-icon>settings</mat-icon>
+        </button>
+    </mat-grid-tile>
+</mat-grid-list> -->
+
+<!-- <mat-grid-list id="nav-bar" cols="16" rowHeight="48">
+    <mat-grid-tile id="logo" colspan="3" style="align-items: start ! important"><h1>FitFoodie</h1></mat-grid-tile>
+    <mat-grid-tile colspan="1"></mat-grid-tile>
+    <mat-grid-tile colspan="8">
+            <button style="width:100%" mat-button color="primary" *ngFor = "let link of navLinks" (click) = "clickTab(link)">
+        {{link}}
+            </button>
+</mat-grid-tile>
+    <mat-grid-tile colspan="3"></mat-grid-tile>
+    <mat-grid-tile id="nav-options">
+        <button mat-icon-button color = "primary">
+            <mat-icon>settings</mat-icon>
+        </button>
+    </mat-grid-tile>
+</mat-grid-list> -->
+
+<div class="mat-elevation-z2">
+    <mat-grid-list cols="16" rowHeight="48">
+        <mat-grid-tile id="logo" colspan="3" style="align-items: start ! important"><h1>FitFoodie</h1></mat-grid-tile>
+        <mat-grid-tile colspan="1"></mat-grid-tile>
+        <mat-grid-tile colspan="8">
+                <button style="width:100%" mat-button color="primary" *ngFor = "let link of navLinks" (click) = "clickTab(link)">
+            {{link}}
+                </button>
+    </mat-grid-tile>
+        <mat-grid-tile colspan="3"></mat-grid-tile>
+        <mat-grid-tile id="nav-options">
+            <button mat-icon-button color = "primary">
+                <mat-icon>settings</mat-icon>
+            </button>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
 
 <div class="content">
     <app-dashboard *ngIf="activeLink == 'Dashboard'"></app-dashboard>

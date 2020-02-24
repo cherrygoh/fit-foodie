@@ -43,7 +43,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedDate.setValue(this.currentDate);
-
   }
 
 }

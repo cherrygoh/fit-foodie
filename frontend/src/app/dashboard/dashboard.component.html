@@ -1,5 +1,18 @@
-<mat-form-field id="datepicker" color="accent">
-    <input matInput [matDatepicker]="picker" [formControl]="selectedDate">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker [startAt]="currentDate"></mat-datepicker>
-</mat-form-field>
+<mat-grid-list cols="16" rowHeight="100">
+    <mat-grid-tile colspan="4"></mat-grid-tile>
+    <mat-grid-tile colspan="8"> 
+        <!-- <button mat-stroked-button>Yesterday</button> -->
+        <mat-form-field id="datepicker">
+            <mat-label> Select a date </mat-label>
+            <input matInput [matDatepicker]="picker" [formControl]="selectedDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker [startAt]="currentDate" color="primary"></mat-datepicker>
+        </mat-form-field>
+        <!-- <button mat-icon-button color="primary">
+            <mat-icon>play_arrow</mat-icon>
+        </button> -->
+        <!-- <button mat-stroked-button>Tomorrow</button> -->
+    </mat-grid-tile>
+    <mat-grid-tile colspan="4"></mat-grid-tile>
+</mat-grid-list>
+
