@@ -5,6 +5,6 @@ export const MOCK_USER: User = {
     'firstName': 'John',
     'lastName': 'Smith',
     'caloriesGoal': 7500,
-    'caloriesCycleStart': new Date('2020-02-25T00:00:00'),
+    'caloriesCycleStart': new Date(2020, 2, 25),
     'caloriesCycleDuration': 7
 }

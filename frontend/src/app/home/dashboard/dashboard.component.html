@@ -1,7 +1,7 @@
-<mat-grid-list cols="16" rowHeight="100">
+<mat-grid-list cols="16" rowHeight="100" gutterSize="16px">
     <mat-grid-tile colspan="4"></mat-grid-tile>
-    <mat-grid-tile colspan="8"> 
-        <button mat-icon-button color="primary" (click)="previousDate()">
+    <mat-grid-tile colspan="8" class="grid-tile-align-bottom"> 
+        <button mat-icon-button class="datepicker-buttons" color="primary" (click)="previousDate()">
             <mat-icon>chevron_left</mat-icon>
         </button>
         <mat-form-field id="datepicker">
@@ -10,10 +10,28 @@
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker [startAt]="currentDate" color="primary"></mat-datepicker>
         </mat-form-field>
-        <button mat-icon-button color="primary" (click)="nextDate()">
+        <button mat-icon-button class="datepicker-buttons" color="primary" (click)="nextDate()">
             <mat-icon>chevron_right</mat-icon>
         </button>
     </mat-grid-tile>
     <mat-grid-tile colspan="4"></mat-grid-tile>
+    <!-- new row -->
+    <mat-grid-tile colspan="2"></mat-grid-tile>
+    <mat-grid-tile colspan="3" *ngFor="let nutrition of nutritionCounters">
+        <mat-card>
+        <span class="mat-small">{{nutrition.name}}</span>
+        <mat-card-content>
+            <h1>{{nutrition.value}}</h1>
+            <span class="mat-caption"> {{nutrition.unit}} </span>
+        </mat-card-content>
+    </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2"></mat-grid-tile>
+    <!-- new row -->
+    <mat-grid-tile colspan="2"></mat-grid-tile>
+    <mat-grid-tile colspan="12">
+        <mat-card>
+            
+        </mat-card>
+    </mat-grid-tile>
 </mat-grid-list>
-
