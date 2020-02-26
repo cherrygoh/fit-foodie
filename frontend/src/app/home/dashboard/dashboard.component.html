@@ -6,7 +6,7 @@
         </button>
         <mat-form-field id="datepicker">
             <mat-label> Select a date </mat-label>
-            <input matInput [matDatepicker]="picker" [formControl]="selectedDate">
+            <input matInput [matDatepicker]="picker" [formControl]="selectedDate" (dateInput)="datePickerChange($event)" (dateChange)="datePickerChange($event)">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker [startAt]="currentDate" color="primary"></mat-datepicker>
         </mat-form-field>

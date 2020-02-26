@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, NativeDateModule } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, NativeDateModule, NativeDateAdapter } from '@angular/material/core';
 
 import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
 import { default as _rollupMoment } from 'moment';
 import { DiaryEntryService } from '@app/core/services/diary-entry/diary-entry.service';
 import { DiaryEntry } from '@app/shared/models/entry';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 const moment = _rollupMoment || _moment;
 
@@ -28,13 +29,14 @@ export const MY_FORMATS = {
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.sass'],
-  providers: [
-    {
-      provide: DateAdapter, useClass: MomentDateAdapter,
-      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
-    },
-    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
-  ]
+  providers: [ NativeDateAdapter ]
+  // providers: [
+  //   {
+  //     provide: DateAdapter, useClass: MomentDateAdapter,
+  //     deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+  //   },
+  //   { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+  // ]
 })
 export class DashboardComponent implements OnInit {
 
@@ -47,13 +49,14 @@ export class DashboardComponent implements OnInit {
   constructor(private diaryEntryService: DiaryEntryService) { }
 
   ngOnInit(): void {
+    
     this.selectedDate.setValue(this.currentDate);
     this.getEntriesAndCountersForDate();
   }
 
   nextDate() {
     let nextDate: Date = new Date();
-    nextDate.setDate(this.selectedDate.value.getDate() + 1);
+    nextDate.setTime(this.selectedDate.value.getTime() + (1000 * 60 * 60 * 24));
     this.selectedDate.setValue(nextDate);
     
     this.getEntriesAndCountersForDate();
@@ -61,7 +64,7 @@ export class DashboardComponent implements OnInit {
 
   previousDate() {
     let previousDate: Date = new Date();
-    previousDate.setDate(this.selectedDate.value.getDate() - 1);
+    previousDate.setTime(this.selectedDate.value.getTime() - (1000 * 60 * 60 * 24));
     this.selectedDate.setValue(previousDate);
 
     this.getEntriesAndCountersForDate();
@@ -81,4 +84,7 @@ export class DashboardComponent implements OnInit {
     this.nutritionCounters[3]['value'] = this.diaryEntries.map(x => x.diaryEntryFat).reduce((x, y) => x + y);
   }
 
+  datePickerChange(event: MatDatepickerInputEvent<Date>) {
+    this.getEntriesAndCountersForDate();
+  }
 }
