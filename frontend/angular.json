@@ -98,7 +98,6 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/styles/theme.sass",
               "src/assets/styles/styles.sass"
             ],
             "scripts": []

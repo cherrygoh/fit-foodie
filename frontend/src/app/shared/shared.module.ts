@@ -14,7 +14,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+
 
 @NgModule({
   imports: [
@@ -33,7 +35,8 @@ import {MatCardModule} from '@angular/material/card';
     MatSliderModule,
     MatNativeDateModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -49,7 +52,8 @@ import {MatCardModule} from '@angular/material/card';
     MatSliderModule,
     MatNativeDateModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatTableModule
   ]
 })
 export class SharedModule { }

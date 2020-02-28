@@ -1,82 +1,69 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, NativeDateModule, NativeDateAdapter } from '@angular/material/core';
+import { NativeDateAdapter } from '@angular/material/core';
 
-import * as _moment from 'moment';
-// tslint:disable-next-line:no-duplicate-imports
-import { default as _rollupMoment } from 'moment';
-import { DiaryEntryService } from '@app/core/services/diary-entry/diary-entry.service';
+import { DiaryEntryService } from '@app/core/services/diary-entry.service';
 import { DiaryEntry } from '@app/shared/models/entry';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-
-const moment = _rollupMoment || _moment;
-
-export const MY_FORMATS = {
-  parse: {
-    dateInput: 'LL',
-  },
-  display: {
-    dateInput: 'LL',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY',
-  },
-};
+import { Meal } from '@app/shared/models/meal';
+import { MealService } from '@app/core/services/meal.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.sass'],
-  providers: [ NativeDateAdapter ]
-  // providers: [
-  //   {
-  //     provide: DateAdapter, useClass: MomentDateAdapter,
-  //     deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
-  //   },
-  //   { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
-  // ]
+  providers: [NativeDateAdapter]
 })
 export class DashboardComponent implements OnInit {
 
+  username = "johnsmith"; // temporary
+
   currentDate: Date = new Date();
   selectedDate: FormControl = new FormControl(new Date());
+  
+  nutritionCounters: any[];
 
-  nutritionCounters: any[]; 
   diaryEntries: DiaryEntry[];
+  meals: Meal[];
 
-  constructor(private diaryEntryService: DiaryEntryService) { }
+  // displayedColumns = ["name"];
+  displayedColumns = ["name", "calories", "protein", "carbs", "fat"];
+
+  constructor(private diaryEntryService: DiaryEntryService, private mealService: MealService) { }
 
   ngOnInit(): void {
-    
-    this.selectedDate.setValue(this.currentDate);
-    this.getEntriesAndCountersForDate();
+    this.setSelectedDateAndFetchData(this.currentDate);
+    this.mealService.getMeals(this.username).subscribe(meals => this.meals = meals);
   }
 
   nextDate() {
     let nextDate: Date = new Date();
     nextDate.setTime(this.selectedDate.value.getTime() + (1000 * 60 * 60 * 24));
-    this.selectedDate.setValue(nextDate);
-    
-    this.getEntriesAndCountersForDate();
+    this.setSelectedDateAndFetchData(nextDate);
   }
 
   previousDate() {
     let previousDate: Date = new Date();
     previousDate.setTime(this.selectedDate.value.getTime() - (1000 * 60 * 60 * 24));
-    this.selectedDate.setValue(previousDate);
-
-    this.getEntriesAndCountersForDate();
+    this.setSelectedDateAndFetchData(previousDate);
   }
 
-  getEntriesAndCountersForDate() {
-    this.diaryEntries = this.diaryEntryService.getDiaryEntries("johnsmith", this.selectedDate.value);
-    this.calculateNutritionCounters();
+  // Sets date in datepicker input, fetch entry and counter data for selected date 
+  setSelectedDateAndFetchData(date: Date) {
+    this.selectedDate.setValue(date);
+    this.getEntriesAndCountersForSelectedDate();
+  }
+
+  getEntriesAndCountersForSelectedDate() {
+    this.diaryEntryService.getDiaryEntries(this.username, this.selectedDate.value).subscribe(diaryEntries => {
+      this.diaryEntries = diaryEntries;
+      this.calculateNutritionCounters();
+    });
   }
 
   calculateNutritionCounters() {
-    this.nutritionCounters = [ {name: 'Calories', unit: 'kcal'}, { name: 'Protein', unit: 'g' }, { name: 'Carbs', unit: 'g' }, { name: 'Fat', unit: 'g' } ];
+    this.nutritionCounters = [{ name: 'Calories', unit: 'kcal' }, { name: 'Protein', unit: 'g' }, { name: 'Carbs', unit: 'g' }, { name: 'Fat', unit: 'g' }];
 
     this.nutritionCounters[0]['value'] = this.diaryEntries.map(x => x.diaryEntryCalories).reduce((x, y) => x + y);
     this.nutritionCounters[1]['value'] = this.diaryEntries.map(x => x.diaryEntryProtein).reduce((x, y) => x + y);
@@ -85,6 +72,6 @@ export class DashboardComponent implements OnInit {
   }
 
   datePickerChange(event: MatDatepickerInputEvent<Date>) {
-    this.getEntriesAndCountersForDate();
+    this.getEntriesAndCountersForSelectedDate();
   }
 }

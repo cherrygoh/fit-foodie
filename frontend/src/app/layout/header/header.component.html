@@ -1,10 +1,10 @@
 <div class="mat-elevation-z4">
-    <mat-grid-list cols="16" rowHeight="48">
+    <mat-grid-list cols="12" rowHeight="48">
         <mat-grid-tile class="grid-tile-align-left" colspan="3" style="align-items: start ! important">
             <span id="logo">FitFoodie</span>
         </mat-grid-tile>
         <mat-grid-tile colspan="1"></mat-grid-tile>
-        <mat-grid-tile colspan="8">
+        <mat-grid-tile colspan="4">
             <button class="nav-bar-button" mat-button color="primary" *ngFor="let link of navLinks"
                 (click)="clickTab(link)">
                 {{link}}

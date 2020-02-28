@@ -1,12 +1,13 @@
-<mat-grid-list cols="16" rowHeight="100" gutterSize="16px">
-    <mat-grid-tile colspan="4"></mat-grid-tile>
-    <mat-grid-tile colspan="8" class="grid-tile-align-bottom"> 
+<mat-grid-list cols="12" rowHeight="100" gutterSize="16px">
+    <mat-grid-tile colspan="3"></mat-grid-tile>
+    <mat-grid-tile colspan="6" class="grid-tile-align-bottom">
         <button mat-icon-button class="datepicker-buttons" color="primary" (click)="previousDate()">
             <mat-icon>chevron_left</mat-icon>
         </button>
         <mat-form-field id="datepicker">
             <mat-label> Select a date </mat-label>
-            <input matInput [matDatepicker]="picker" [formControl]="selectedDate" (dateInput)="datePickerChange($event)" (dateChange)="datePickerChange($event)">
+            <input matInput [matDatepicker]="picker" [formControl]="selectedDate" (dateInput)="datePickerChange($event)"
+                (dateChange)="datePickerChange($event)">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker [startAt]="currentDate" color="primary"></mat-datepicker>
         </mat-form-field>
@@ -14,24 +15,99 @@
             <mat-icon>chevron_right</mat-icon>
         </button>
     </mat-grid-tile>
-    <mat-grid-tile colspan="4"></mat-grid-tile>
+    <mat-grid-tile colspan="3"></mat-grid-tile>
     <!-- new row -->
     <mat-grid-tile colspan="2"></mat-grid-tile>
-    <mat-grid-tile colspan="3" *ngFor="let nutrition of nutritionCounters">
+    <mat-grid-tile class="nutrition-counters" colspan="2" *ngFor="let nutrition of nutritionCounters">
         <mat-card>
-        <span class="mat-small">{{nutrition.name}}</span>
-        <mat-card-content>
-            <h1>{{nutrition.value}}</h1>
-            <span class="mat-caption"> {{nutrition.unit}} </span>
-        </mat-card-content>
-    </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile colspan="2"></mat-grid-tile>
-    <!-- new row -->
-    <mat-grid-tile colspan="2"></mat-grid-tile>
-    <mat-grid-tile colspan="12">
-        <mat-card>
-            
+            <span class="mat-small">{{nutrition.name}}</span>
+            <mat-card-content>
+                <h1>{{nutrition.value}}</h1>
+                <span class="mat-caption"> {{nutrition.unit}} </span>
+            </mat-card-content>
         </mat-card>
     </mat-grid-tile>
+    <mat-grid-tile colspan="2"></mat-grid-tile>
+    <!-- new row -->
+    <!-- <div *ngFor="let meal of meals"> 
+        <mat-grid-tile colspan="2" rowspan="4"></mat-grid-tile>
+        <mat-grid-tile colspan="12" rowspan="4" class="grid-tile-align-top">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle>{{meal.mealName}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <table mat-table [dataSource]="diaryEntries">
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef>Name</th>
+                            <td mat-cell *matCellDef="let entry">{{entry.diaryEntryName}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="calories">
+                            <th mat-header-cell *matHeaderCellDef>Calories (kcal)</th>
+                            <td mat-cell *matCellDef="let entry">{{entry.diaryEntryCalories}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="protein">
+                            <th mat-header-cell *matHeaderCellDef>Protein (g)</th>
+                            <td mat-cell *matCellDef="let entry">{{entry.diaryEntryProtein}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="carbs">
+                            <th mat-header-cell *matHeaderCellDef>Carbs (g)</th>
+                            <td mat-cell *matCellDef="let entry">{{entry.diaryEntryCarbs}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="fat">
+                            <th mat-header-cell *matHeaderCellDef>Fat (g)</th>
+                            <td mat-cell *matCellDef="let entry">{{entry.diaryEntryFat}} </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2" rowspan="4"></mat-grid-tile>
+    </div> -->
 </mat-grid-list>
+
+<div *ngFor="let meal of meals">
+
+<div class="mdc-layout-grid-custom">
+    <div class="mdc-layout-grid-inner-custom">
+        <div class="mdc-layout-grid__cell--span-2"></div>
+        <div class="mdc-layout-grid__cell--span-8">
+            <mat-card style="padding: 24px 0px 0px 0px">
+                <span style="padding: 0px 0px 0px 24px" class="mat-table-header">{{meal.mealName}}</span>
+                <!-- <button mat-icon-button color="primary">
+                    <mat-icon>add_circle</mat-icon>
+                </button> -->
+                <mat-card-content>
+                    <table mat-table [dataSource]="diaryEntries">
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef>Name</th>
+                            <td mat-cell *matCellDef="let entry">{{entry.diaryEntryName}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="calories">
+                            <th mat-header-cell *matHeaderCellDef>Calories (kcal)</th>
+                            <td mat-cell *matCellDef="let entry">{{entry.diaryEntryCalories}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="protein">
+                            <th mat-header-cell *matHeaderCellDef>Protein (g)</th>
+                            <td mat-cell *matCellDef="let entry">{{entry.diaryEntryProtein}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="carbs">
+                            <th mat-header-cell *matHeaderCellDef>Carbs (g)</th>
+                            <td mat-cell *matCellDef="let entry">{{entry.diaryEntryCarbs}} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="fat">
+                            <th mat-header-cell *matHeaderCellDef>Fat (g)</th>
+                            <td mat-cell *matCellDef="let entry">{{entry.diaryEntryFat}} </td>
+                        </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                    </table>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="mdc-layout-grid__cell--span-2"></div>
+    </div>
+    </div>
+</div>

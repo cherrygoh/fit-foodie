@@ -1,6 +1,10 @@
-$primary-default: #1565C0
-$primary-light: #1976D2
-$primary-dark: #0D47A1
+@import '~@angular/material/theming'
+@import 'theme'
 
+$primary-default: mat-color($app-primary)
+$primary-light: mat-color($app-primary, lighter)
+$primary-dark: mat-color($app-primary, darker)
 
-$default-margin: 12px
+$accent-default: mat-color($app-accent)
+$accent-light: mat-color($app-accent, lighter)
+$accent-dark: mat-color($app-accent, darker)

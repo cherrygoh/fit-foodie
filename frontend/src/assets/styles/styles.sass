@@ -1,8 +1,14 @@
-@import 'variables'
+@import '~@angular/material/theming'
+@import 'theme'
+@import "@material/layout-grid/mdc-layout-grid"
   
+// Be sure that you only ever include this mixin once!
+@include mat-core()
+@include angular-material-theme($app-theme)
+ 
 html, body 
-    height: 100%
-    margin: 0 !important
+  height: 100%
+  margin: 0 !important
 
 .spacer 
   flex: 1 1 auto
@@ -15,3 +21,6 @@ html, body
 
 .grid-tile-align-bottom .mat-figure
   align-items: flex-end !important
+
+.grid-tile-align-top .mat-figure
+  align-items: flex-start !important

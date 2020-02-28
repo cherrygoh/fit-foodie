@@ -1,4 +1,5 @@
 @import 'variables'
+@import "@material/layout-grid/mdc-layout-grid"
 
 #datepicker
     color: $primary-default
@@ -10,20 +11,42 @@
 
 mat-card
     width: 100%
-    text-align: center
-    
-.mat-small
+
+.nutrition-counters
+    mat-card
+        text-align: center
+    .mat-small
+        color: rgba(0, 0, 0, 0.6)
+    h1
+        display: inline
+        font-size: 24px
+        margin: 2px 
+    mat-card-content
+        color: #FF9100
+
+table
+    width: 100%
+
+.mat-cell
+    font-size: 13px
     color: rgba(0, 0, 0, 0.6)
 
-h1
-    display: inline
-    font-size: 24px
-    margin: 2px
-    
+.mat-header-cell
+    font-weight: bold
+    // color: $primary-default
 
-mat-card-content
-    color: #FF9100
+.mdc-layout-grid-inner-custom
+    @include mdc-layout-grid-inner(desktop, 0px, 16px)
 
+.mdc-layout-grid-custom
+    @include mdc-layout-grid(desktop, 0px)
+    padding: 8px 0px
 
+.mdc-layout-grid__cell--span-8
+    display: flex
 
-
+.mat-table-header
+    font-size: 15px
+    color: rgba(0, 0, 0, 0.55)
+    font-weight: bold
+    width: 100%
