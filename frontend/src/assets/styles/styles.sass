@@ -10,17 +10,17 @@ html, body
   height: 100%
   margin: 0 !important
 
-.spacer 
-  flex: 1 1 auto
+.flex-container 
+  display: flex
+  justify-content: center
+  align-items: center
 
-.grid-tile-align-left .mat-figure 
-  justify-content: flex-start !important
+@for $i from 1 through 12
+    .col-#{$i}
+        flex: $i
+        overflow: hidden
 
-.grid-tile-align-right .mat-figure 
-  justify-content: flex-end !important
-
-.grid-tile-align-bottom .mat-figure
-  align-items: flex-end !important
-
-.grid-tile-align-top .mat-figure
-  align-items: flex-start !important
+.flex-container-justify-end
+  display: flex
+  justify-content: flex-end
+  align-items: center

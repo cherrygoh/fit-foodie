@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,6 +26,8 @@ import { MatTableModule } from '@angular/material/table';
     BrowserAnimationsModule,
     ReactiveFormsModule,
 
+    FlexLayoutModule,
+
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
@@ -42,6 +45,8 @@ import { MatTableModule } from '@angular/material/table';
     BrowserAnimationsModule,
     ReactiveFormsModule,
 
+    FlexLayoutModule, 
+    
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
