@@ -8,6 +8,11 @@ import { AppRoutingModule } from '@app/app-routing.module';
     CommonModule,
     BrowserModule,
     AppRoutingModule,
+  ],
+  exports: [
+    CommonModule,
+    BrowserModule,
+    AppRoutingModule,
   ]
 })
 export class CoreModule { }

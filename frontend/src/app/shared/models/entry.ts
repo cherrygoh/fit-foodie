@@ -6,7 +6,7 @@ export interface DiaryEntry {
     diaryEntryProtein?: number;
     diaryEntryCarbs?: number;
     diaryEntryFat?: number;
-    mealId: number;
+    mealOrder: number;
     diaryEntryDate: Date;
     username: string;
 

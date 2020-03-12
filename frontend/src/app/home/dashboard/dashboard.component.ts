@@ -25,16 +25,19 @@ export class DashboardComponent implements OnInit {
   nutritionCounters: any[];
 
   diaryEntries: DiaryEntry[];
+  diaryEntriesByMeal: DiaryEntry[][] = [];
   meals: Meal[];
-
-  // displayedColumns = ["name"];
-  displayedColumns = ["name", "calories", "protein", "carbs", "fat"];
 
   constructor(private diaryEntryService: DiaryEntryService, private mealService: MealService) { }
 
   ngOnInit(): void {
+    this.mealService.getMeals(this.username).subscribe(meals => {
+      this.meals = meals;
+      this.meals.map(meal => this.diaryEntriesByMeal.push([]));
+      
+    });
     this.setSelectedDateAndFetchData(this.currentDate);
-    this.mealService.getMeals(this.username).subscribe(meals => this.meals = meals);
+
   }
 
   nextDate() {
@@ -59,6 +62,9 @@ export class DashboardComponent implements OnInit {
     this.diaryEntryService.getDiaryEntries(this.username, this.selectedDate.value).subscribe(diaryEntries => {
       this.diaryEntries = diaryEntries;
       this.calculateNutritionCounters();
+      this.diaryEntries.map(entry => {
+        this.diaryEntriesByMeal[entry.mealOrder].push(entry);
+      });
     });
   }
 

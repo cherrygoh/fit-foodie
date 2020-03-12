@@ -18,6 +18,7 @@
     <div class="col-3"></div>
 </div>
 
+
 <div class="flex-row">
     <div class="col-2"></div>
     <div class="col-2 nutrition-counters" *ngFor="let nutrition of nutritionCounters">
@@ -32,80 +33,4 @@
     <div class="col-2"></div>
 </div>
 
-<!-- <div class="flex-row" *ngFor="let meal of meals">
-    <div class="col-2"></div>
-    <div class="col-8">
-        <mat-card>
-            <span class="mat-table-header">
-                {{meal.mealName}}
-            </span>
-            <mat-card-content>
-                <table mat-table [dataSource]="diaryEntries">
-                    <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef>Name</th>
-                        <td mat-cell *matCellDef="let entry">{{entry.diaryEntryName}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="calories">
-                        <th mat-header-cell *matHeaderCellDef>Calories (kcal)</th>
-                        <td mat-cell *matCellDef="let entry">{{entry.diaryEntryCalories}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="protein">
-                        <th mat-header-cell *matHeaderCellDef>Protein (g)</th>
-                        <td mat-cell *matCellDef="let entry">{{entry.diaryEntryProtein}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="carbs">
-                        <th mat-header-cell *matHeaderCellDef>Carbs (g)</th>
-                        <td mat-cell *matCellDef="let entry">{{entry.diaryEntryCarbs}} </td>
-                    </ng-container>
-                    <ng-container matColumnDef="fat">
-                        <th mat-header-cell *matHeaderCellDef>Fat (g)</th>
-                        <td mat-cell *matCellDef="let entry">{{entry.diaryEntryFat}} </td>
-                    </ng-container>
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-                </table>
-            </mat-card-content>
-        </mat-card>
-    </div>
-    <div class="col-2"></div>
-</div> -->
-
-<div class="flex-row">
-    <div class="col-2"></div>
-    <div class="col-8">
-                <mat-accordion multi="true">
-                <mat-expansion-panel *ngFor="let meal of meals">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                            {{meal.mealName}}
-                        </mat-panel-title>
-                    </mat-expansion-panel-header>
-                    <table mat-table [dataSource]="diaryEntries">
-                        <ng-container matColumnDef="name">
-                            <th mat-header-cell *matHeaderCellDef>Name</th>
-                            <td mat-cell *matCellDef="let entry">{{entry.diaryEntryName}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="calories">
-                            <th mat-header-cell *matHeaderCellDef>Calories (kcal)</th>
-                            <td mat-cell *matCellDef="let entry">{{entry.diaryEntryCalories}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="protein">
-                            <th mat-header-cell *matHeaderCellDef>Protein (g)</th>
-                            <td mat-cell *matCellDef="let entry">{{entry.diaryEntryProtein}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="carbs">
-                            <th mat-header-cell *matHeaderCellDef>Carbs (g)</th>
-                            <td mat-cell *matCellDef="let entry">{{entry.diaryEntryCarbs}} </td>
-                        </ng-container>
-                        <ng-container matColumnDef="fat">
-                            <th mat-header-cell *matHeaderCellDef>Fat (g)</th>
-                            <td mat-cell *matCellDef="let entry">{{entry.diaryEntryFat}} </td>
-                        </ng-container>
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-                    </table>
-                </mat-expansion-panel>
-            </mat-accordion>
-    </div>
-    <div class="col-2"></div>
-</div>
+<app-food-diary [meals]="meals" [diaryEntriesByMeal]="diaryEntriesByMeal"></app-food-diary>
