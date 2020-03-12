@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,6 +16,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -26,8 +26,6 @@ import { MatTableModule } from '@angular/material/table';
     BrowserAnimationsModule,
     ReactiveFormsModule,
 
-    FlexLayoutModule,
-
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
@@ -39,14 +37,13 @@ import { MatTableModule } from '@angular/material/table';
     MatNativeDateModule,
     MatGridListModule,
     MatCardModule,
-    MatTableModule
+    MatTableModule,
+    MatExpansionModule
   ],
   exports: [
     BrowserAnimationsModule,
     ReactiveFormsModule,
 
-    FlexLayoutModule, 
-    
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
@@ -58,7 +55,8 @@ import { MatTableModule } from '@angular/material/table';
     MatNativeDateModule,
     MatGridListModule,
     MatCardModule,
-    MatTableModule
+    MatTableModule,
+    MatExpansionModule
   ]
 })
 export class SharedModule { }

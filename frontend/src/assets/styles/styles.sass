@@ -1,6 +1,6 @@
 @import '~@angular/material/theming'
 @import 'theme'
-@import "@material/layout-grid/mdc-layout-grid"
+@import 'variables'
   
 // Be sure that you only ever include this mixin once!
 @include mat-core()
@@ -10,17 +10,30 @@ html, body
   height: 100%
   margin: 0 !important
 
-.flex-container 
+.flex-row 
   display: flex
-  justify-content: center
-  align-items: center
+
+.flex-row > div:not(:nth-child(1)) 
+  padding-left: $gutter-size
+  box-sizing: border-box
+  
 
 @for $i from 1 through 12
     .col-#{$i}
-        flex: $i
+        flex-basis: percentage(1 / 12 * $i)
+        // flex: $i
         overflow: hidden
+        display: flex
+        justify-content: center
+        align-items: center
 
-.flex-container-justify-end
-  display: flex
-  justify-content: flex-end
-  align-items: center
+$justifications: start, end
+
+@each $justification in $justifications
+  .flex-row-justify-#{$justification}
+    display: flex
+    justify-content: flex-#{$justification}
+
+  .flex-row-align-#{$justification}
+    display: flex
+    align-items: flex-#{$justification}

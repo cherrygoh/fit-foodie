@@ -1,6 +1,8 @@
 @import 'variables'
-@import "@material/layout-grid/mdc-layout-grid"
 
+.flex-row
+    min-height: 100px
+    
 #datepicker
     color: $primary-default
     font-weight: 550
@@ -11,6 +13,7 @@
 
 mat-card
     width: 100%
+    margin-bottom: $gutter-size
 
 .nutrition-counters
     mat-card
@@ -27,6 +30,12 @@ mat-card
 table
     width: 100%
 
+.mat-table-header
+    color: rgba(0, 0, 0, 0.6)
+    font-weight: bold
+    margin: 0px 0px 0px 23px
+    
+
 .mat-cell
     font-size: 13px
     color: rgba(0, 0, 0, 0.6)
@@ -34,19 +43,3 @@ table
 .mat-header-cell
     font-weight: bold
     // color: $primary-default
-
-.mdc-layout-grid-inner-custom
-    @include mdc-layout-grid-inner(desktop, 0px, 16px)
-
-.mdc-layout-grid-custom
-    @include mdc-layout-grid(desktop, 0px)
-    padding: 8px 0px
-
-.mdc-layout-grid__cell--span-8
-    display: flex
-
-.mat-table-header
-    font-size: 15px
-    color: rgba(0, 0, 0, 0.55)
-    font-weight: bold
-    width: 100%

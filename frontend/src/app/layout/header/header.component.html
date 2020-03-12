@@ -1,26 +1,5 @@
-<!-- <div class="mat-elevation-z4">
-    <mat-grid-list cols="12" rowHeight="48">
-        <mat-grid-tile class="grid-tile-align-left" colspan="3" style="align-items: start ! important">
-            <span id="logo">FitFoodie</span>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="1"></mat-grid-tile>
-        <mat-grid-tile colspan="4">
-            <button class="nav-bar-button" mat-button color="primary" *ngFor="let link of navLinks"
-                (click)="clickTab(link)">
-                {{link}}
-            </button>
-        </mat-grid-tile>
-        <mat-grid-tile colspan="3"></mat-grid-tile>
-        <mat-grid-tile class="grid-tile-align-right">
-            <button mat-icon-button color="primary">
-                <mat-icon>settings</mat-icon>
-            </button>
-        </mat-grid-tile>
-    </mat-grid-list>
-</div> -->
-
-<div class="mat-elevation-z4 flex-container">
-    <div class="col-2">
+<div class="mat-elevation-z4 flex-row">
+    <div class="col-2 flex-row-justify-start">
         <div id="logo">FitFoodie</div>
     </div>
     <div class="col-1"></div>
@@ -30,11 +9,9 @@
         </button>
     </div>
     <div class="col-2"></div>
-    <div class="col-1">
-        <div class="flex-container-justify-end">
-            <button mat-icon-button color="primary">
-                <mat-icon>settings</mat-icon>
-            </button>
-        </div>
+    <div class="col-1 flex-row-justify-end">
+        <button mat-icon-button color="primary">
+            <mat-icon>settings</mat-icon>
+        </button>
     </div>
 </div>
