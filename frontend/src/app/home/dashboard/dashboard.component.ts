@@ -8,6 +8,7 @@ import { DiaryEntry } from '@app/shared/models/entry';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { Meal } from '@app/shared/models/meal';
 import { MealService } from '@app/core/services/meal.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,6 +27,7 @@ export class DashboardComponent implements OnInit {
 
   diaryEntries: DiaryEntry[];
   diaryEntriesByMeal: DiaryEntry[][];
+  dataSources: MatTableDataSource<DiaryEntry>[];
   meals: Meal[];
 
   constructor(private diaryEntryService: DiaryEntryService, private mealService: MealService) { }
@@ -66,6 +68,8 @@ export class DashboardComponent implements OnInit {
       this.diaryEntries.map(entry => {
         this.diaryEntriesByMeal[entry.mealOrder].push(entry);
       });
+      this.dataSources = [];
+      this.diaryEntriesByMeal.map(entries => this.dataSources.push(new MatTableDataSource(entries)));
     });
   }
 

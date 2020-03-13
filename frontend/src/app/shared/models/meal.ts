@@ -2,7 +2,7 @@ export interface Meal {
 
     mealId: number;
     mealName: string;
-    mealOrder: number;
+    mealOrder: number; // starts at index 0
     username: string;
 
 }

@@ -17,6 +17,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatGridListModule,
     MatCardModule,
     MatTableModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatCheckboxModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -56,7 +58,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatGridListModule,
     MatCardModule,
     MatTableModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatCheckboxModule
   ]
 })
 export class SharedModule { }
