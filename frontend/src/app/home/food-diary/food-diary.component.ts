@@ -20,20 +20,17 @@ export class FoodDiaryComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getTotal(meal: Meal, nutrition: String) {
-    let total: number = 0;
-    // switch (nutrition) {
-    //   case 'calories':
-    //     this.diaryEntriesByMeal[meal.mealOrder].map(x => total + x.diaryEntryCalories);
-    //   case 'protein':
-    //     this.diaryEntriesByMeal[meal.mealOrder].map(x => total + x.diaryEntryProtein);
-    //   case 'carbs':
-    //     this.diaryEntriesByMeal[meal.mealOrder].map(x => total + x.diaryEntryCarbs);
-    //   case 'fat':
-    //     this.diaryEntriesByMeal[meal.mealOrder].map(x => total + x.diaryEntryFat);
-    // }
-
-    return total;
+  getTotal(meal: Meal, nutrition: number) {
+    switch (nutrition) {
+      case 0:
+        return this.diaryEntriesByMeal[meal.mealOrder].map(x => x.diaryEntryCalories).reduce((x, y) => x + y, 0);
+      case 1:
+        return this.diaryEntriesByMeal[meal.mealOrder].map(x => x.diaryEntryProtein).reduce((x, y) => x + y, 0);
+      case 2:
+        return this.diaryEntriesByMeal[meal.mealOrder].map(x => x.diaryEntryCarbs).reduce((x, y) => x + y, 0);;
+      case 3:
+        return this.diaryEntriesByMeal[meal.mealOrder].map(x => x.diaryEntryFat).reduce((x, y) => x + y, 0);
+    }
   }
 
 }
