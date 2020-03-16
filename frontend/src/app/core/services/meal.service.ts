@@ -11,6 +11,6 @@ export class MealService {
   constructor() { }
 
   getMeals(username: string) {
-    return of(MOCK_MEALS);
+    return of(MOCK_MEALS); // meals should be returned sorted according to meal order
   }
 }

@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
 
   diaryEntries: DiaryEntry[];
   diaryEntriesByMeal: DiaryEntry[][];
-  dataSources: MatTableDataSource<DiaryEntry>[];
+  dataSources: MatTableDataSource<DiaryEntry>[] = [];
   meals: Meal[];
 
   constructor(private diaryEntryService: DiaryEntryService, private mealService: MealService) { }
@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.mealService.getMeals(this.username).subscribe(meals => {
       this.meals = meals;
+      this.meals.forEach(meal => this.dataSources.push(new MatTableDataSource<DiaryEntry>()));
     });
     this.setSelectedDateAndFetchData(this.currentDate);
 
@@ -60,16 +61,15 @@ export class DashboardComponent implements OnInit {
 
   getEntriesAndCountersForSelectedDate() {
     this.diaryEntriesByMeal = [];
-    this.meals.map(meal => this.diaryEntriesByMeal.push([]));
+    this.meals.forEach(meal => this.diaryEntriesByMeal.push([]));
 
     this.diaryEntryService.getDiaryEntries(this.username, this.selectedDate.value).subscribe(diaryEntries => {
       this.diaryEntries = diaryEntries;
       this.calculateNutritionCounters();
-      this.diaryEntries.map(entry => {
+      this.diaryEntries.forEach(entry => {
         this.diaryEntriesByMeal[entry.mealOrder].push(entry);
       });
-      this.dataSources = [];
-      this.diaryEntriesByMeal.map(entries => this.dataSources.push(new MatTableDataSource(entries)));
+      this.diaryEntriesByMeal.forEach((entries, mealOrder) => this.dataSources[mealOrder].data = entries);
     });
   }
 

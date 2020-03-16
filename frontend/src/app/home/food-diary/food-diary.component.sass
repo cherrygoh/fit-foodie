@@ -1,3 +1,5 @@
+@import 'variables'
+    
 table
     width: 100%
 
@@ -20,6 +22,7 @@ mat-accordion
 
 mat-panel-title
     color: rgba(0, 0, 0, 0.6)
+    align-items: center
     // font-weight: bold
 
 .mat-column-selection
@@ -42,3 +45,19 @@ mat-panel-title
 
 td 
     padding-right: 0px !important
+
+mat-expansion-panel-header
+    margin-bottom: 10px
+    position: relative
+    // height: 50px !important
+
+.always-active-panel-header
+    color: rgba(0, 0, 0, 0.6) !important
+    
+    mat-icon-button
+        padding-left: 10px
+
+.bottom-right-fab
+    position: fixed !important
+    right: $gutter-size
+    bottom: $gutter-size

@@ -3,6 +3,7 @@ import { Meal } from '@app/shared/models/meal';
 import { DiaryEntry } from '@app/shared/models/entry';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatTableDataSource } from '@angular/material/table';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-food-diary',
@@ -12,51 +13,38 @@ import { MatTableDataSource } from '@angular/material/table';
 export class FoodDiaryComponent implements OnInit {
 
   @Input() meals: Meal[];
-  @Input() diaryEntriesByMeal;
+  @Input() dataSources: MatTableDataSource<DiaryEntry>[];
   
-  // displayedColumns = ["name"];
-  // displayedColumns = ["name", "calories", "protein", "carbs", "fat", "action"];
   displayedColumns = ["selection", "name", "calories", "protein", "carbs", "fat"];
 
-  selectedEntries = new Set<DiaryEntry>();
-
-  dataSources: MatTableDataSource<DiaryEntry>[];
+  selections: SelectionModel<DiaryEntry>[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.meals.map(meal => this.selections.push(new SelectionModel<DiaryEntry>(true, [])));
   }
-
-  // @Input() 
-  // set diaryEntriesByMeal(diaryEntriesByMeal: DiaryEntry[][]) {
-  //   this.diaryEntriesByMeal = diaryEntriesByMeal;
-  //   this.dataSources = new Array(this.meals.length);
-  //   this.diaryEntriesByMeal.map(entries => this.dataSources[entries[0].mealOrder] = new MatTableDataSource(entries));
-  // }
 
   getTotal(meal: Meal, nutrition: number) {
-    // switch (nutrition) {
-    //   case 0:
-    //     return this.diaryEntriesByMeal[meal.mealOrder].map(x => x.diaryEntryCalories).reduce((x, y) => x + y, 0);
-    //   case 1:
-    //     return this.diaryEntriesByMeal[meal.mealOrder].map(x => x.diaryEntryProtein).reduce((x, y) => x + y, 0);
-    //   case 2:
-    //     return this.diaryEntriesByMeal[meal.mealOrder].map(x => x.diaryEntryCarbs).reduce((x, y) => x + y, 0);;
-    //   case 3:
-    //     return this.diaryEntriesByMeal[meal.mealOrder].map(x => x.diaryEntryFat).reduce((x, y) => x + y, 0);
-    // }
-    return 0;
+    switch (nutrition) {
+      case 0:
+        return this.dataSources[meal.mealOrder].data.map(x => x.diaryEntryCalories).reduce((x, y) => x + y, 0);
+      case 1:
+        return this.dataSources[meal.mealOrder].data.map(x => x.diaryEntryProtein).reduce((x, y) => x + y, 0);
+      case 2:
+        return this.dataSources[meal.mealOrder].data.map(x => x.diaryEntryCarbs).reduce((x, y) => x + y, 0);;
+      case 3:
+        return this.dataSources[meal.mealOrder].data.map(x => x.diaryEntryFat).reduce((x, y) => x + y, 0);
+    }
   }
 
-  // select(event: MatCheckboxChange, entry: DiaryEntry) {
-  //   if (event.checked) {
-  //     this.selectedEntries.add(entry);
-  //     if (this.selectedEntries.size == this.diaryEntriesByMeal[entry.mealOrder].length) {
+  isAllSelected(meal: Meal) {
+    const numSelected = this.selections[meal.mealOrder].selected.length;
+    const numRows = this.dataSources[meal.mealOrder].data.length;
+    return numSelected == numRows;
+  }
 
-  //   }
-  //   else {
-  //     this.selectedEntries.delete(entry);
-  //   }
-  // }
-
+  selectAll(event: MatCheckboxChange, meal: Meal) {
+    this.isAllSelected(meal) ? this.selections[meal.mealOrder].clear() : this.dataSources[meal.mealOrder].data.forEach(data => this.selections[meal.mealOrder].select(data));
+  }
 }
